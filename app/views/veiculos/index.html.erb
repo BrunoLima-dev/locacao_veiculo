@@ -1,0 +1,47 @@
+<style>
+  .page-header {
+    margin-top: 0;
+  }
+  .action-button {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+</style>
+
+<div class="page-header">
+  <%= link_to new_veiculo_path, class: 'btn btn-primary btn-sm action-button' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Veiculo
+  <% end %>
+  <h1>Listagem de veiculos</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cor</th>
+        <th>Qnt passageiros</th>
+        <th>Placa</th>
+        <th>Valor</th>
+        <th colspan=3>Ação</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @veiculos) do |veiculo| %>
+        <tr>
+          <td scope="row"><%= veiculo.nome %></td>
+          <td><%= veiculo.cor %></td>
+          <td><%= veiculo.qnt_passageiros %></td>
+          <td><%= veiculo.placa %></td>
+          <td><%= veiculo.valor %></td>
+          <td><%= link_to 'Show', veiculo %></td>
+          <td><%= link_to 'Edit', edit_veiculo_path(veiculo) %></td>
+          <td><%= link_to 'Destroy', veiculo, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
