@@ -6,6 +6,11 @@
     cursor: pointer;
     margin-right: 10px;
   }
+
+  .table-hover tbody tr:hover {
+    background-color: rgb(40, 96, 144);
+    color: white;
+  }
 </style>
 
 <div class="page-header">
@@ -20,26 +25,30 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Cor</th>
-        <th>Qnt passageiros</th>
-        <th>Placa</th>
-        <th>Valor</th>
-        <th colspan=3>Ação</th>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Marca</th>
+        <th class="text-center">Cor</th>
+        <th class="text-center">Qnt passageiros</th>
+        <th class="text-center">Placa</th>
+        <th class="text-center">Valor</th>
+        <th class="text-center">Ação</th>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @veiculos) do |veiculo| %>
         <tr>
-          <td scope="row"><%= veiculo.nome %></td>
-          <td><%= veiculo.cor %></td>
-          <td><%= veiculo.qnt_passageiros %></td>
-          <td><%= veiculo.placa %></td>
-          <td><%= veiculo.valor %></td>
-          <td><%= link_to 'Show', veiculo %></td>
-          <td><%= link_to 'Edit', edit_veiculo_path(veiculo) %></td>
-          <td><%= link_to 'Destroy', veiculo, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+          <td class="text-center"><%= veiculo.nome %></td>
+          <td class="text-center"><%= veiculo.marca.nome rescue nil %></td>
+          <td class="text-center"><%= veiculo.cor %></td>
+          <td class="text-center"><%= veiculo.qnt_passageiros %></td>
+          <td class="text-center"><%= veiculo.placa %></td>
+          <td class="text-center"><%= veiculo.valor %></td>
+          <td class="text-center">
+            <%= link_to 'Show', veiculo, :class => 'btn btn-success btn-xs' %>
+            <%= link_to 'Edit', edit_veiculo_path(veiculo), :class => 'btn btn-primary btn-xs' %>
+            <%= link_to 'Destroy', veiculo, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-xs btn-danger' %>
+          </td>
         </tr>
       <% end %>
     </tbody>

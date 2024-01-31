@@ -4,10 +4,12 @@ class VeiculosController < ApplicationController
   # GET /veiculos or /veiculos.json
   def index
     @veiculos = Veiculo.all
+    @veiculos = Veiculo.includes(:marca).all
   end
 
   # GET /veiculos/1 or /veiculos/1.json
   def show
+    @veiculo = Veiculo.includes(:marca).find(params[:id])
   end
 
   # GET /veiculos/new
@@ -17,11 +19,13 @@ class VeiculosController < ApplicationController
 
   # GET /veiculos/1/edit
   def edit
+    @marcas = Marca.all
   end
 
   # POST /veiculos or /veiculos.json
   def create
     @veiculo = Veiculo.new(veiculo_params)
+    @marca = Marca.new(marca_params)
 
     respond_to do |format|
       if @veiculo.save
@@ -65,6 +69,6 @@ class VeiculosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def veiculo_params
-      params.require(:veiculo).permit(:nome, :cor, :qnt_passageiros, :placa, :valor)
+      params.require(:veiculo).permit(:nome, :marca_id, :cor, :qnt_passageiros, :placa, :valor)
     end
 end
