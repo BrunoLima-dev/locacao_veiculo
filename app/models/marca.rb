@@ -1,3 +1,3 @@
 class Marca < ApplicationRecord
-  belongs_to :veiculo
+  has_many :veiculo
 end
