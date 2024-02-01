@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  veiculo: one
+  cliente: one
+  tempo_de_espera: 
+  valor_alugado: 9.99
+  reservado_de: 2024-01-31 19:49:48
+  reservado_ate: 2024-01-31 19:49:48
+  pagamento_no_destino: false
+
+two:
+  veiculo: two
+  cliente: two
+  tempo_de_espera: 
+  valor_alugado: 9.99
+  reservado_de: 2024-01-31 19:49:48
+  reservado_ate: 2024-01-31 19:49:48
+  pagamento_no_destino: false
