@@ -1,4 +1,4 @@
-class ReservasController < ApplicationController
+class ReservasController < AdministradorsController
   before_action :set_reserva, only: %i[ show edit update destroy ]
 
   # GET /reservas or /reservas.json
@@ -13,15 +13,21 @@ class ReservasController < ApplicationController
   # GET /reservas/new
   def new
     @reserva = Reserva.new
+    @veiculo = Veiculo.all
+    @cliente = Cliente.all
   end
 
   # GET /reservas/1/edit
   def edit
+    @veiculo = Veiculo.all
+    @cliente = Cliente.all
   end
 
   # POST /reservas or /reservas.json
   def create
     @reserva = Reserva.new(reserva_params)
+    @veiculo = Veiculo.all
+    @cliente = Cliente.all
 
     respond_to do |format|
       if @reserva.save
@@ -58,13 +64,13 @@ class ReservasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reserva
-      @reserva = Reserva.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reserva
+    @reserva = Reserva.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def reserva_params
-      params.require(:reserva).permit(:veiculo_id, :cliente_id, :tempo_de_espera, :valor_alugado, :reservado_de, :reservado_ate, :pagamento_no_destino)
-    end
+  # Only allow a list of trusted parameters through.
+  def reserva_params
+    params.require(:reserva).permit(:veiculo_id, :cliente_id, :tempo_de_espera, :valor_alugado, :reservado_de, :reservado_ate, :pagamento_no_destino)
+  end
 end
