@@ -1,3 +1,9 @@
+<style>
+   .table-hover tbody tr:hover {
+    background-color: rgb(40, 96, 144);
+    color: white;
+  }
+</style>
 <div class="page-header">
   <%= link_to new_reserva_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
@@ -10,32 +16,35 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Veiculo</th>
-            <th>Cliente</th>
-            <th>Tempo de espera</th>
-            <th>Valor alugado</th>
-            <th>Reservado de</th>
-            <th>Reservado ate</th>
-            <th>Pagamento no destino</th>
-            <th></th>
-        <th></th>
-        <th></th>
+        <th class="text-center">ID</th>
+        <th class="text-center">Veiculo</th>
+        <th class="text-center">Cliente</th>
+        <th class="text-center">Tempo de espera</th>
+        <th class="text-center">Valor alugado</th>
+        <th class="text-center">Reservado de</th>
+        <th class="text-center">Reservado ate</th>
+        <th class="text-center">Pagamento no destino</th>
+        <th class="text-center" style="width: 200px;">Ações</th>
       </tr>
     </thead>
 
     <tbody>
+      <% @reservas.sort_by(&:id) %>
       <%= content_tag_for(:tr, @reservas) do |reserva| %>
-            <td><%= reserva.veiculo %></td>
-            <td><%= reserva.cliente %></td>
-            <td><%= reserva.tempo_de_espera %></td>
-            <td><%= reserva.valor_alugado %></td>
-            <td><%= reserva.reservado_de %></td>
-            <td><%= reserva.reservado_ate %></td>
-            <td><%= reserva.pagamento_no_destino %></td>
-            <td><%= link_to 'Show', reserva %></td>
-        <td><%= link_to 'Edit', edit_reserva_path(reserva) %></td>
-        <td><%= link_to 'Destroy', reserva, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td class="text-center"><%= reserva.veiculo.id %></td>
+        <td class="text-center"><%= reserva.veiculo.nome %></td>
+        <td class="text-center"><%= reserva.cliente.nome %></td>
+        <td class="text-center"><%= Time.at(reserva.tempo_de_espera.minutes).utc.strftime("%H:%M:%S") %></td>
+        <td class="text-center"><%= number_to_currency(reserva.valor_alugado) %></td>
+        <td class="text-center"><%= reserva.reservado_de %></td>
+        <td class="text-center"><%= reserva.reservado_ate %></td>
+        <td class="text-center"><%= reserva.pagamento_no_destino? ? 'sim' : 'não' %></td>
+        <td class="text-center">
+          <%= link_to 'Mostrar', reserva, class: 'btn btn-success btn-xs' %>
+          <%= link_to 'Editar', edit_reserva_path(reserva), class: 'btn btn-primary btn-xs' %>
+          <%= link_to 'Deletar', reserva, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-xs btn-danger' %>
+        </td>
       <% end %>
-    </tbody>
+    </tbody>    
   </table>
 </div>

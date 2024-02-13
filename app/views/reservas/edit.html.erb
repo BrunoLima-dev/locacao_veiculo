@@ -1,3 +1,6 @@
+<h1>Editar reserva</h1>
+<br>
+<%= render 'form' %>
 <div class="page-header">
   <%= link_to reservas_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
@@ -6,8 +9,5 @@
   <%= link_to @reserva, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-info-sign"></span>
     Mostrar
-  <% end %>
-  <h1>Editar reserva</h1>
+  <% end %>    
 </div>
-
-<%= render 'form' %>
