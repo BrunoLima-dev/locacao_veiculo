@@ -64,13 +64,14 @@ class AdministradorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_administrador
-      # @administrador = Administrador.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def administrador_params
-      params.require(:administrador).permit(:nome, :login, :senha)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_administrador
+    # @administrador = Administrador.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def administrador_params
+    params.require(:administrador).permit(:nome, :login, :senha)
+  end
 end
