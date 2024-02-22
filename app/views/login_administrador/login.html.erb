@@ -1,0 +1,30 @@
+<style>
+  .loginForm {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+</style>
+<form class="form-signin loginForm" action="/administrador/logar" method="POST">
+  <div class="text- center mb-4">
+    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Logue-se agora</h1>
+  </div>
+
+  <div class="form-label-group">
+    <label for="text">Login</label>
+    <input type="text" id="login" class="form-control" placeholder="Login" required autofocus name="login">
+  </div>
+
+  <div class="form-label-group">
+    <label for="senha">Senha</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required name="senha">
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Logue-se</button>
+</form>

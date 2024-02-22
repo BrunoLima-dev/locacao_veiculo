@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  get 'login_administrador/signin'
+  get 'administrador/login', to: 'login_administrador#login'
+  get 'administrador/logout', to: 'login_administrador#logout'
+
+  post 'administrador/logar', to: 'login_administrador#logar'
+
   resources :administradors
   resources :reservas
   resources :clientes
-  root 'veiculos#index'
-  resources :marcas
   resources :veiculos
+  resources :marcas
+  root 'veiculos#index'
 end
