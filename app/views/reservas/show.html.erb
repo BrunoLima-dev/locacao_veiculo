@@ -21,15 +21,15 @@
     </tr>
     <tr>
       <th>Valor alugado:</th>
-      <td><%= @reserva.valor_alugado %></td>
+      <td><%= number_to_currency(@reserva.valor_alugado, unit: 'R$', separator: ',', delimiter: '.') %></td>
     </tr>
     <tr>
       <th>Reservado de:</th>
-      <td><%= @reserva.reservado_de %></td>
+      <td><%= @reserva.reservado_de.strftime("%d/%m/%Y %H:%M") %></td>
     </tr>
     <tr>
       <th>Reservado ate:</th>
-      <td><%= @reserva.reservado_ate %></td>
+      <td><%= @reserva.reservado_ate.strftime("%d/%m/%Y %H:%M") %></td>
     </tr>
     <tr>
       <th>Pagamento no destino:</th>
