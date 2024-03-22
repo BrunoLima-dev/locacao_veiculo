@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Estados</title>
+</head>
+<body>
+  <h1>API estados</h1>
+
+  <div class="row">
+    <a href="http://localhost:3000/estados.json">Estados</a>
+    <a href="http://localhost:3000/cidades.json">Cidades</a>
+    <a href="http://localhost:3000/cidades.jsom?uf=am">Cidades AM</a>
+  </div>
+  <!-- Campos onde vai ser-->
+  <div style="margin-top: 30px">
+    <h5>Estados</h5>
+    <select id="estadosSelect" onchange="loadCidades(this.value)">
+      <option>Selecione</option>
+    </select>
+  </div>
+
+  <div style="margin-top: 30px">
+    <h5>Cidades</h5>
+    <select id="cidadesSelect">
+      <option>Selecione</option>
+    </select>
+  </div>
+  <!-- Carregamento dos dados da api em cascata -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript">
+    var loadEstados = function() {
+      $.ajax({
+        url: 'http://localhost:3000/estados.json',
+      }).done(function(dados) {
+        $("#estadosSelect").html("<option>Selecione</option>")
+        $(dados).each(function() {
+          $("#estadosSelect").append("<option value='" + this.uf + "'>"+ this.nome + "</option>")
+        });
+      });
+    }
+
+    var loadCidades = function(uf) {
+      $.ajax({
+        url: 'http://localhost:3000/cidades.json?uf=' + uf,
+      }).done(function(dados) {
+        $("#cidadesSelect").html("")
+        $(dados).each(function() {
+          $("#cidadesSelect").append("<option value='" + this.nome + "'>"+ this.nome + "</option>")
+        });
+      });
+    }
+    loadEstados();
+  </script>
+</body>
+</html>
