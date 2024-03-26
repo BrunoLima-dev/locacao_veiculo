@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # rotas da api
   get 'estados', to: 'estados#index'
   get 'cidades', to: 'estados#lista_cidades'
+  # get 'estados-proxy', to: 'estados#proxy'
   # final das rotas da api
 
   post 'administrador/logar', to: 'login_administrador#logar'

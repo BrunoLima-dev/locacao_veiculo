@@ -1,5 +1,5 @@
 class EstadosController < AdministradorsController
-  # GET /estados or /estados.json
+  before_action :cross_domain, only: [:index, :lista_cidades]
   def index
     estados = [
       { id: 1, nome: 'Acre',     uf: 'AC' },
@@ -17,6 +17,12 @@ class EstadosController < AdministradorsController
     render json: estados, status: 200
   end
 
+  # def proxy
+  #   require 'rest-client'
+  #   estados = RestClient.get('http://localhost:3000/estados.json')
+  #   render json: estados.body, status: 200
+  # end
+
   def lista_cidades
     cidades = [
       { id: 1, nome: 'Rio Branco', uf: 'AC' },
@@ -32,5 +38,18 @@ class EstadosController < AdministradorsController
     end
 
     render json: cidades, status: 200
+  end
+
+  private
+
+  def cross_domain
+    # Permite que a API seja acessada por qualquer domínio
+    headers['Access-Control-Allow-Origin'] = '*'
+    # Permite que a API seja acessada so pelo o verbo GET
+    headers['Access-Control-Allow-Methods'] = 'GET'
+    # Libero todos os metodos
+    headers['Access-Control-Request-Method'] = "*"
+    # Libero alguns os headers
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
   end
 end
